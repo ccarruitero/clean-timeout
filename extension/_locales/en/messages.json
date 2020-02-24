@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "clean-timeout",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "clean annoying timeouts from websites",
+    "description": "The description of the application"
+  }
+}
