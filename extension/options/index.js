@@ -1,4 +1,4 @@
-import { getSites } from '../util.js';
+import { getSites, removeSite, updateSites } from './util.js';
 
 const ENTER_KEY = 13;
 const ESCAPE_KEY = 27;
@@ -12,6 +12,21 @@ const renderList = async () => {
   sites.forEach((site) => {
     const item = document.createElement('li');
     item.textContent = site;
+    const closeBtn = document.createElement('a');
+    closeBtn.textContent = 'x';
+    closeBtn.setAttribute('style', `
+      cursor: pointer;
+      padding: 5px;
+      background: grey;
+      border-radius: 50%;
+      color: white;
+      margin-left: 10px;
+    `);
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeSite(site);
+    });
+    item.appendChild(closeBtn);
     wrapper.appendChild(item);
   });
 }
@@ -25,16 +40,20 @@ const init = () => {
 
   const newSite = document.querySelector('#new-site');
 
+  const cleanInput = (target) => {
+    target.value = '';
+  }
+
   newSite.addEventListener('keydown', async (e) => {
+    const target = e.target;
+
     if (e.keyCode === ENTER_KEY) {
       let currentSites = await getSites();
-      const target = e.target;
       currentSites.push(target.value);
-      browser.storage.local.set({
-        sites: JSON.stringify(currentSites)
-      });
-      e.preventDefault();
-      target.value = '';
+      updateSites(currentSites)
+      cleanInput(target);
+    } else if (e.keyCode === ESCAPE_KEY) {
+      cleanInput(target);
     }
   });
 
