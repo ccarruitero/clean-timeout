@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "clean-timeout",
+    "description": "Nombre del web extension"
+  },
+  "appDescription": {
+    "message": "Elimina los timeouts molestos de algunas paginas web",
+    "description": "Description del web extension"
+  }
+}
