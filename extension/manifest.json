@@ -24,10 +24,5 @@
   },
   "permissions": [
     "storage"
-  ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "addon@example.com"
-    }
-  }
+  ]
 }
